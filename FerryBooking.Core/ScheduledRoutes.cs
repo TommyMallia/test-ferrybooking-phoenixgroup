@@ -25,15 +25,15 @@ namespace FerryBooking.Core
             Passengers.Add(passenger);
         }
 
-        public void SetVesselForRoute(Vessel aircraft)
+        public void SetVesselForRoute(Vessel vessel)
         {
-            Vessel = aircraft;
+            Vessel = vessel;
         }
         
         public string GetSummary()
         {
-            double costOfJourney = 0;
-            double profitFromJourney = 0;
+            double costOfJourney = Passengers.Count * Route.BaseCost;
+            double profitFromJourney = CalculateProfit();
             int totalLoyaltyPointsAccrued = 0;
             int totalLoyaltyPointsRedeemed = 0;
             int totalExpectedBaggage = 0;
@@ -47,7 +47,6 @@ namespace FerryBooking.Core
                 {
                     case(PassengerType.General):
                         {
-                            profitFromJourney += Route.BasePrice;
                             totalExpectedBaggage++;
                             break;
                         }
@@ -61,8 +60,7 @@ namespace FerryBooking.Core
                             }
                             else
                             {
-                                totalLoyaltyPointsAccrued += Route.LoyaltyPointsGained;
-                                profitFromJourney += Route.BasePrice;                           
+                                totalLoyaltyPointsAccrued += Route.LoyaltyPointsGained;                
                             }
                             totalExpectedBaggage += 2;
                             break;
@@ -73,7 +71,6 @@ namespace FerryBooking.Core
                             break;
                         }
                 }
-                costOfJourney += Route.BaseCost;
                 seatsTaken++;
             }
 
@@ -97,9 +94,7 @@ namespace FerryBooking.Core
             result += "Total costs from route: " + costOfJourney;
             result += _newLine;
 
-            double profitSurplus = profitFromJourney - costOfJourney;
-
-            result += (profitSurplus > 0 ? "Route generating profit of: " : "Route losing money of: ") + profitSurplus;
+            result += GenerateProfitSummary(profitFromJourney, costOfJourney);
 
             result += _verticalWhiteSpace;
 
@@ -107,6 +102,8 @@ namespace FerryBooking.Core
             result += "Total loyalty points redeemed: " + totalLoyaltyPointsRedeemed + _newLine;
 
             result += _verticalWhiteSpace;
+            
+            double profitSurplus = profitFromJourney - costOfJourney; //wanted to take this out but ran out of time with the refactor
 
             if (profitSurplus > 0 && 
                 seatsTaken < Vessel.NumberOfSeats && 
@@ -116,6 +113,30 @@ namespace FerryBooking.Core
                 result += "ROUTE MAY NOT PROCEED";
 
             return result;
+        }
+
+        private double CalculateProfit()
+        {
+            double totalProfit = 0;
+            foreach (var passenger in Passengers)
+            {
+                if (passenger.Type == PassengerType.LoyaltyMember && passenger.IsUsingLoyaltyPoints)
+                {
+                    totalProfit += 0;
+                }
+                else if (passenger.Type != PassengerType.CarrierEmployee)
+                {
+                    totalProfit += Route.BasePrice;
+                }
+            }
+
+            return totalProfit;
+        }
+        
+        private string GenerateProfitSummary(double profitFromJourney, double costOfJourney)
+        {
+            double profitSurplus = profitFromJourney - costOfJourney;
+            return (profitSurplus > 0 ? "Route generating profit of: " : "Route losing money of: ") + profitSurplus;
         }
     }
 }
