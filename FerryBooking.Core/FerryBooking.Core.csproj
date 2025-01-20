@@ -46,6 +46,7 @@
     <Compile Include="PassengerCreation.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="Passenger.cs" />
+    <Compile Include="ScheduledRoutesService.cs" />
     <Compile Include="Vessel.cs" />
     <Compile Include="ScheduledRoutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
