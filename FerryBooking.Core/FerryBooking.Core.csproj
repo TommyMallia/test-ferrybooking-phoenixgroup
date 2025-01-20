@@ -7,8 +7,8 @@
     <ProjectGuid>{22F6B34B-9154-4944-B1FD-D5564E250AE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FlightBooking.Core</RootNamespace>
-    <AssemblyName>FlightBooking.Core</AssemblyName>
+    <RootNamespace>FerryBooking.Core</RootNamespace>
+    <AssemblyName>FerryBooking.Core</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

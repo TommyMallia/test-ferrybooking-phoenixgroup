@@ -7,8 +7,8 @@
     <ProjectGuid>{EA075571-C5B7-4C0E-B0AC-7CCCBD1B2552}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FlightBooking.Console</RootNamespace>
-    <AssemblyName>FlightBooking.Console</AssemblyName>
+    <RootNamespace>FerryBookingProblem</RootNamespace>
+    <AssemblyName>FerryBookingProblem</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
