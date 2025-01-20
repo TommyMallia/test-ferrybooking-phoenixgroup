@@ -6,9 +6,9 @@ namespace FerryBooking.Core
 {
     public class ScheduledRoutes
     {
-        private readonly string VERTICAL_WHITE_SPACE = Environment.NewLine + Environment.NewLine;
-        private readonly string NEW_LINE = Environment.NewLine;
-        private const string INDENTATION = "    ";
+        private readonly string _verticalWhiteSpace = Environment.NewLine + Environment.NewLine;
+        private readonly string _newLine = Environment.NewLine;
+        private const string Indentation = "    ";
 
         public ScheduledRoutes(Route route)
         {
@@ -77,36 +77,36 @@ namespace FerryBooking.Core
                 seatsTaken++;
             }
 
-            result += VERTICAL_WHITE_SPACE;
+            result += _verticalWhiteSpace;
             
             result += "Total passengers: " + seatsTaken;
-            result += NEW_LINE;
-            result += INDENTATION + "General sales: " + Passengers.Count(p => p.Type == PassengerType.General);
-            result += NEW_LINE;
-            result += INDENTATION + "Loyalty member sales: " + Passengers.Count(p => p.Type == PassengerType.LoyaltyMember);
-            result += NEW_LINE;
-            result += INDENTATION + "Carrier employee comps: " + Passengers.Count(p => p.Type == PassengerType.CarrierEmployee);
+            result += _newLine;
+            result += Indentation + "General sales: " + Passengers.Count(p => p.Type == PassengerType.General);
+            result += _newLine;
+            result += Indentation + "Loyalty member sales: " + Passengers.Count(p => p.Type == PassengerType.LoyaltyMember);
+            result += _newLine;
+            result += Indentation + "Carrier employee comps: " + Passengers.Count(p => p.Type == PassengerType.CarrierEmployee);
             
-            result += VERTICAL_WHITE_SPACE;
+            result += _verticalWhiteSpace;
             result += "Total expected baggage: " + totalExpectedBaggage;
 
-            result += VERTICAL_WHITE_SPACE;
+            result += _verticalWhiteSpace;
 
             result += "Total revenue from route: " + profitFromJourney;
-            result += NEW_LINE;
+            result += _newLine;
             result += "Total costs from route: " + costOfJourney;
-            result += NEW_LINE;
+            result += _newLine;
 
             double profitSurplus = profitFromJourney - costOfJourney;
 
             result += (profitSurplus > 0 ? "Route generating profit of: " : "Route losing money of: ") + profitSurplus;
 
-            result += VERTICAL_WHITE_SPACE;
+            result += _verticalWhiteSpace;
 
-            result += "Total loyalty points given away: " + totalLoyaltyPointsAccrued + NEW_LINE;
-            result += "Total loyalty points redeemed: " + totalLoyaltyPointsRedeemed + NEW_LINE;
+            result += "Total loyalty points given away: " + totalLoyaltyPointsAccrued + _newLine;
+            result += "Total loyalty points redeemed: " + totalLoyaltyPointsRedeemed + _newLine;
 
-            result += VERTICAL_WHITE_SPACE;
+            result += _verticalWhiteSpace;
 
             if (profitSurplus > 0 && 
                 seatsTaken < Vessel.NumberOfSeats && 
